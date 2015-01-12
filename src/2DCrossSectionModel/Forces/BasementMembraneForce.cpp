@@ -93,7 +93,7 @@ std::vector<c_vector<unsigned, 2> > BasementMembraneForce::GetEpithelialTissuePa
     c_vector<double, 2> pair;
 
     // We iterate over all cells in the tissue, and deal only with those that are epithelial cells
-    for (typename AbstractCellPopulation<2>::Iterator cell_iter = rCellPopulation.Begin();
+    for (AbstractCellPopulation<2>::Iterator cell_iter = rCellPopulation.Begin();
          cell_iter != rCellPopulation.End();
          ++cell_iter)
     {
@@ -111,7 +111,7 @@ std::vector<c_vector<unsigned, 2> > BasementMembraneForce::GetEpithelialTissuePa
 
     		std::vector<unsigned> tissue_nodes;
 
-    		for (typename Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
+    		for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
 		         iter != p_node->ContainingElementsEnd();
 		         ++iter)
     		{
@@ -173,7 +173,7 @@ std::vector<c_vector<unsigned, 2> > BasementMembraneForce::GetEpithelialTissuePa
 				assert(tissue_elements.size() != 0);
 
 				// Loop over all elements that contain the tissue node
-				for (typename Node<2>::ContainingElementIterator elt_it = rCellPopulation.GetNode(tissue_nodes[i])->ContainingElementsBegin();
+				for (Node<2>::ContainingElementIterator elt_it = rCellPopulation.GetNode(tissue_nodes[i])->ContainingElementsBegin();
 				         elt_it != rCellPopulation.GetNode(tissue_nodes[i])->ContainingElementsEnd();
 				         ++elt_it)
 				{
@@ -250,7 +250,7 @@ c_vector<double,2> BasementMembraneForce::GetCryptHeightExtremes(AbstractCellPop
     double current_height_coordinate;
 
     // We iterate over all cells in the tissue, and deal only with those that are epithelial cells
-    for (typename AbstractCellPopulation<2>::Iterator cell_iter = rCellPopulation.Begin();
+    for (AbstractCellPopulation<2>::Iterator cell_iter = rCellPopulation.Begin();
          cell_iter != rCellPopulation.End();
          ++cell_iter)
     {
@@ -305,7 +305,7 @@ double BasementMembraneForce::GetCurvatureFromNodePair(AbstractCellPopulation<2>
     assert(rCellPopulation.GetNode(tissueNodeIndex)->GetNumContainingElements() != 0);
 
     // Loop over all elements that contain the tissue node
-    for (typename Node<2>::ContainingElementIterator elt_it = rCellPopulation.GetNode(tissueNodeIndex)->ContainingElementsBegin();
+    for (Node<2>::ContainingElementIterator elt_it = rCellPopulation.GetNode(tissueNodeIndex)->ContainingElementsBegin();
          elt_it != rCellPopulation.GetNode(tissueNodeIndex)->ContainingElementsEnd();
          ++elt_it)
     {
@@ -578,7 +578,7 @@ unsigned BasementMembraneForce::GetNumContainingElementsWithoutGhostNodes(Abstra
     unsigned num_elements_with_no_ghost_nodes = 0;		// Initialise
 
     // Iterate over containing elements
-    for (typename Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
+    for (Node<2>::ContainingElementIterator iter = p_node->ContainingElementsBegin();
          iter != p_node->ContainingElementsEnd(); ++iter)
     {
         bool element_contains_ghost_nodes = false;
@@ -741,7 +741,7 @@ void BasementMembraneForce::AddForceContribution(std::vector<c_vector<double, 2>
 
 //	// Find the epithelial nodes and apply a migration force
 //
-//    for (typename MeshBasedCellPopulation<2>::Iterator cell_iter = rCellPopulation.Begin();
+//    for (MeshBasedCellPopulation<2>::Iterator cell_iter = rCellPopulation.Begin();
 //         cell_iter != rCellPopulation.End(); ++cell_iter)
 //    {
 //		c_vector<double, 2> active_migration_direction;
@@ -826,7 +826,7 @@ void BasementMembraneForce::AddForceContribution(std::vector<c_vector<double, 2>
 //
 //	// Loop over all the springs and only work with those which are marked (between cells that have recently been born, so these
 //	// are short springs)
-//    for (typename MeshBasedCellPopulation<2>::SpringIterator spring_iterator=(static_cast<MeshBasedCellPopulation<2>*>(&rCellPopulation))->SpringsBegin();
+//    for (MeshBasedCellPopulation<2>::SpringIterator spring_iterator=(static_cast<MeshBasedCellPopulation<2>*>(&rCellPopulation))->SpringsBegin();
 //            spring_iterator!=(static_cast<MeshBasedCellPopulation<2>*>(&rCellPopulation))->SpringsEnd();
 //            ++spring_iterator)
 //    {
